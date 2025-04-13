@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card w-full max-w-3xl mx-auto bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h1 class="card-title text-2xl font-bold text-center mb-6">Arbitrage Betting Calculator</h1>
+            
+            <form method="POST" class="space-y-6">
+                {{ form.hidden_tag() }}
+                
+                <div class="space-y-4">
+                    <div class="form-control">
+                        <label class="label">
+                            {{ form.odds_a.label }}
+                        </label>
+                        {{ form.odds_a(class="input input-bordered w-full") }}
+                        {% if form.odds_a.errors %}
+                            <div class="text-error mt-1">
+                                {% for error in form.odds_a.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-control">
+                        <label class="label">
+                            {{ form.odds_b.label }}
+                        </label>
+                        {{ form.odds_b(class="input input-bordered w-full") }}
+                        {% if form.odds_b.errors %}
+                            <div class="text-error mt-1">
+                                {% for error in form.odds_b.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-control">
+                        <label class="label">
+                            {{ form.bankroll.label }}
+                        </label>
+                        {{ form.bankroll(class="input input-bordered w-full") }}
+                        {% if form.bankroll.errors %}
+                            <div class="text-error mt-1">
+                                {% for error in form.bankroll.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="form-control mt-6">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+            
+            {% if form.is_submitted() %}
+                <div class="divider my-6"></div>
+                
+                {% if has_arbitrage %}
+                    <div class="alert alert-success mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Arbitrage opportunity detected!</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="card bg-base-200">
+                            <div class="card-body">
+                                <h2 class="card-title">Stake on Outcome A</h2>
+                                <p class="text-2xl font-bold">₹{{ result.stake_a }}</p>
+                                <p class="text-sm opacity-70">Odds: {{ form.odds_a.data }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-base-200">
+                            <div class="card-body">
+                                <h2 class="card-title">Stake on Outcome B</h2>
+                                <p class="text-2xl font-bold">₹{{ result.stake_b }}</p>
+                                <p class="text-sm opacity-70">Odds: {{ form.odds_b.data }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+                        <div class="stat">
+                            <div class="stat-title">Guaranteed Return</div>
+                            <div class="stat-value">₹{{ result.guaranteed_return }}</div>
+                        </div>
+                        
+                        <div class="stat">
+                            <div class="stat-title">Profit</div>
+                            <div class="stat-value">₹{{ result.profit }}</div>
+                        </div>
+                        
+                        <div class="stat">
+                            <div class="stat-title">ROI</div>
+                            <div class="stat-value">{{ result.roi }}%</div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                        <span>No arbitrage opportunity with these odds.</span>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
