@@ -226,7 +226,6 @@ This tool is for educational and informational purposes only. Please ensure you 
 If you encounter any issues or have questions:
 
 - **Open an Issue**: [GitHub Issues](https://github.com/DeepanshuTIET/Arbitrage_Betting_Calculator/issues)
-- **Email**: [Your Email]
 - **Live Demo**: [red-carpet-nine.vercel.app](https://red-carpet-nine.vercel.app)
 
 ## 🙏 Acknowledgments
