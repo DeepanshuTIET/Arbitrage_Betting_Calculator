@@ -240,4 +240,4 @@ If you encounter any issues or have questions:
 **Made with ❤️ by [Deepanshu Goyal](https://github.com/DeepanshuTIET)**
 
 [![GitHub](https://img.shields.io/badge/GitHub-DeepanshuTIET-181717.svg?logo=github)](https://github.com/DeepanshuTIET)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Deepanshu%20Goyal-0077B5.svg?logo=linkedin)](https://linkedin.com/in/deepanshu-goyal)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Deepanshu%20Goyal-0077B5.svg?logo=linkedin)](https://www.linkedin.com/in/deepanshu-goyal-ba65aa247)
